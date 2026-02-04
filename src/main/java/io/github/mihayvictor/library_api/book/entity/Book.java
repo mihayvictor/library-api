@@ -1,12 +1,16 @@
 package io.github.mihayvictor.library_api.book.entity;
 
-import java.io.Serial;
-import java.io.Serializable;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
+@Document(collection = "book")
 public class Book {
 
-    private Long id;
+    @Id
+    private String id;
+
     private String title;
     private String author;
     private Integer pages;
@@ -14,18 +18,18 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String title, String author, Integer pages) {
+    public Book(String id, String title, String author, Integer pages) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.pages = pages;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
