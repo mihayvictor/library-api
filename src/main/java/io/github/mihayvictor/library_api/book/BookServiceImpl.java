@@ -7,6 +7,7 @@ import io.github.mihayvictor.library_api.book.mapper.BookMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService{
@@ -28,6 +29,12 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<Book> findAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public Book findById(String id) {
+        Optional <Book> obj = repository.findById(id);
+        return obj.get();
     }
 
 }

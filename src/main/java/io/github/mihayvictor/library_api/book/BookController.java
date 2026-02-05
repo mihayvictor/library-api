@@ -27,10 +27,18 @@ public class BookController {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping(value = "/{id}")
+    public  ResponseEntity<Book> findById(@PathVariable @Valid String id){
+        Book book = service.findById(id);
+        return ResponseEntity.ok(book);
+    }
+
     @PostMapping
     public ResponseEntity<BookResponse> create(@RequestBody @Valid BookCreateRequest request){
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
+
+
 
 
 
