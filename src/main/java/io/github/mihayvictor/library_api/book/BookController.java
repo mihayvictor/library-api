@@ -1,5 +1,6 @@
 package io.github.mihayvictor.library_api.book;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import io.github.mihayvictor.library_api.book.dto.BookCreateRequest;
 import io.github.mihayvictor.library_api.book.dto.BookResponse;
 import io.github.mihayvictor.library_api.book.entity.Book;
@@ -22,7 +23,7 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> findAll(){
+    public ResponseEntity<List<Book>>findAll(){
         List<Book> list = service.findAll();
         return ResponseEntity.ok(list);
     }
@@ -34,10 +35,15 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<BookResponse> create(@RequestBody @Valid BookCreateRequest request){
+    public ResponseEntity<BookResponse>create(@RequestBody @Valid BookCreateRequest request){
         return  ResponseEntity.status(HttpStatus.CREATED).body(service.create(request));
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void>delete(@PathVariable @Valid String id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

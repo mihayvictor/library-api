@@ -37,4 +37,11 @@ public class BookServiceImpl implements BookService{
         return obj.get();
     }
 
+    @Override
+    public void delete(String id) {
+        Optional<Book> obj = repository.findById(id);
+        Book book = obj.get();
+        repository.delete(book);
+    }
+
 }
